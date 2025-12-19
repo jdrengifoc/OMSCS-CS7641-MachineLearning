@@ -66,6 +66,40 @@ $$
 $$
 Locally, the optimal movement to reduce the error is proportional to the opposite direction of the derivative, namely, multiply it by a negative constant $-\eta$. Therefore, we arrive to LSM update weight rule: $w_i = w_i + \eta [V(b) - \hat{V}(b)] \cdot x_i$
 $$$$
+#### Exercise 1.5
+Implement an algorithm similar to that discussed for the checkers problem, but use the simpler game of tic-tac-toe. Represent the learned function $V$ as a linear combination of board features of your choice. To train your program, play it repeatedly against a second copy of the program that uses a fixed evaluation function you create by hand. Plot the percent of games won by your system, versus the number of training games played.
+
+**Solution**
+1. **Task.** Playing tic-tac-toe
+2. **Performance measure.** Percent games won.
+3. **Training experience.** 
+	1. **Direct training** examples consisting of individual board states and the correct move for each.
+	2. **Rely on a teacher**
+4. **Target function** ($V$)
+	1. **Ideally.** the most obvious choice for the type of information to be learned is a program, or function, that chooses the best move for any given board state.
+	2. **Pragmatic.** $V: B \rightarrow \mathbb{R}$ evaluation function that assigns a numerical score to any given board state.
+		- We intend for this target function V to assign higher scores to better board states.
+5. Target function representation ($\hat{V}(b) = \vec{w}' \vec{x}$) 
+6. Estimate training values $V_{train}(b) \leftarrow \hat{V}(succesor(b))$
+##### Board representation
+We define a board as $(b_{ij})_{i, j \in \{1,2,3\}}$ with $b_{ij} \in \{-1, 0, 1\}$, where $b_{ij} = 1$ represents that the row $i$ and column $j$ of the board was taken by player $1$; $b_{ij} = -1$ means that it was taken by player $2$; and $0$ implies that the cell is empty.
+
+##### Target function representation
+We reduce the learning problem to estimate the linear function combination of the following features:
+1. $sr_i$: the sum of row $i$
+2. $sc_j$: the sum of column $j$
+3. $sd_k$: the sum of diagonal $k$
+4. $e$: the number of empty cell
+
+In summary,
+$$
+\begin{align}
+\hat{V} &: B \rightarrow \mathbb{R} \\
+\hat{V}(b) &= \vec{w}' \vec{x}
+\end{align}
+$$
+The rational for the choice of these attributes respond that if a column, row or diagonal sums $2$, that means that player 1 can won in the next move. Similarly, if it sums $-2$, player 2 can won in the next move. Besides, the number of empty row radically change the possibilities.
+
 ## Mitchell ch2
 ### Concept learning
 

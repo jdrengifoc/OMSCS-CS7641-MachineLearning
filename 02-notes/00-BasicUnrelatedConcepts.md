@@ -136,9 +136,51 @@
 > # Basic concepts
 > The **power set** of a set $X$, denoted by $\mathcal{P}(X)$ is the set of all subsets of $X$ including the **empty set** $\varnothing$ and $X$.
 
+> [!EXAMPLE]+ Expected Value ^00-expected-value
+> # Basic concepts
+> ## Random variable
+>  Let $(\Omega, \mathcal{F}, P)$ a **probability space**. A **random variable** is a **measurable function**  $X: \Omega \rightarrow \mathbb{R}$. Formally, for every **borel set** $B \in \mathcal{B}(\mathbb{R})$, the preimage $X^{-1}(B) \in \mathcal{F}$.
+>  - Different to a **measure**, which assigns a importance to each event, while a **measurable function** assigns a label to outcomes of interest.
+>  ## Lebesgue integral
+>  
+>  ### 1. Simple functions
+>  Let $(\Omega, \mathcal{F}, P)$ a **probability space**. A function $\phi: \omega \rightarrow \mathbb{R}$.is called a **Simple Function** if it is a **measurable function** with a **finite range**.
+> 
+> **Theorem.** Every simple function can be uniquely represented as a linear combination of **indicator functions** such as:
+> $$\phi(\omega) = \sum_{i=1}^n a_i \mathbb{1}_{A_i}(\omega),$$
+> where:
+> 1. $a_i$ are distinct real values in the range
+> 2. $A_i = \{\omega \in \Omega: \phi(\omega) = a_i\}$ are the **preimages** of $a_i$
+> 	1. The sets $A_i$ form a **partition** on $\Omega$ (Disjoint and their union is $\Omega$)
+> 	2. $A_i \in \mathcal{F}$
+> 
+> **Definition.** The **Lebesgue integral for a simple function** $\phi$ with respect to a **probability measure** $P$ is:
+> $$
+> \int_{\Omega} \phi dP = \sum_{i=1}^n a_i P(A_i)
+> $$
+> - Identical to the discrete expected value.
+> 
+> ### 2. Non-negative measurable functions
+> For any non-negative random variable $X \geq 0$, we define the integral by approximating $X$ from below using **simple functions**. Let $S_X$ the set of all simple functions $s$ such that $0 \leq s \leq X$.
+> 
+> $$
+> \int_{\Omega} X dP = \sup \left\{ \int_\Omega s dP: s \in S_X\right\}
+> $$
+> 
+> ### 3. General measurable functions
+> For a random variable $X$, we decompose it into its positive and negative parts, such as, $X = X^+ - X^-$ where: $X^+ = \max(X,0)$ and $X^- = \max(-X, 0)$. Hence,
+> $$
+> \int_{\Omega} X dP = \int_{\Omega} X^+ dP - \int_{\Omega} X^- dP
+> $$
+>
+
+
+
 > [!ERROR]+ Lebesgue Integral INCOMPLETE ^00-lebesgue-integral
 > 
 > The Lebesgue integral generalizes the Riemann integral by changing how the area under the function $f(x)$ is calculated.
+> https://www.youtube.com/watch?v=gHUZFXvy4yE
+> https://www.youtube.com/watch?v=PGPZ0P1PJfw
 > 
 > ### 🧠 Key Difference: Slicing the Range
 > 
